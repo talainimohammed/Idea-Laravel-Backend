@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Api\V1\IdeaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +18,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function () {
+/*Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1','middleware'=>'auth:sanctum'], function () {
     Route::apiResource('ideas', 'IdeaController');
+});*/
+
+
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function () {
+    Route::apiResource('ideas', 'IdeaController')->except(['update']);
+    Route::group(['middleware' => 'auth:sanctum'], function () {
+        Route::patch('ideas/{idea}', 'IdeaController@update');
+    });
 });
+?>
