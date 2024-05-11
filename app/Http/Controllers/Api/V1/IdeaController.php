@@ -55,7 +55,8 @@ class IdeaController extends Controller
      */
     public function update(UpdateIdeaRequest $request, Idea $idea)
     {
-        //
+        $idea->update($request->all());
+        return new IdeaResource($idea);
     }
 
     /**

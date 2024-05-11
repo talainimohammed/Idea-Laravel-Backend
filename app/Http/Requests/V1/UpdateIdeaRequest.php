@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateIdeaRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateIdeaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,14 @@ class UpdateIdeaRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        $method = $this->getMethod();
+        if ($method === 'PATCH') {
+            return [
+                'title' =>['sometimes', 'string', 'max:255'],
+                'description' => ['sometimes', 'string'],
+                'category' => ['sometimes', 'string', 'max:255'],
+                'valid' => ['sometimes', 'string'],
+            ];
+        }
     }
 }
