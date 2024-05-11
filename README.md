@@ -1,5 +1,5 @@
 
-# IdeaSharing Website
+# IdeaSharing platforme
 
 ## Introduction
 Welcome to IdeaSharing, a platform designed for sharing and discussing ideas. This web application is built using Laravel, a powerful PHP framework for web development. With IdeaSharing, users can create, share, and explore various ideas across different categories.
