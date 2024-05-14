@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/ideas', function () {
+    return view('listideas');
+});
 
 Route::get('/setup', function () {
     $credentials = [
